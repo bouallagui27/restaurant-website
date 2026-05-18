@@ -56,7 +56,7 @@ npm install
 3. Setup Environment Variables
 Create a .env.local file in the root directory and configure your database settings:
 
-مقتطف الرمز
+
 DB_NAME=la_table_db
 DB_USER=your_db_user
 DB_PASSWORD=your_db_password
