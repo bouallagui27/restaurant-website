@@ -83,35 +83,28 @@ export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState<CategoryType>("STARTERS")
   const [selectedDish, setSelectedDish] = useState<any | null>(null)
 
-  return (
+   return (
     <section data-aos="fade-up" id="menu" className="bg-[#fbf4ea] min-h-screen py-24 px-6 md:px-12 transition-all duration-300">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
-        
-        {/* الـ Title الفوقاني متع الـ Menu بالضبط */}
+
         <span className="font-sans text-[11px] font-bold tracking-[0.3em] text-amber-700 uppercase mb-3">
           Our Menu
         </span>
-        <h2 className="font-serif text-5xl md:text-6xl text-[#1c1917] tracking-wide text-center">
+        <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#1c1917] tracking-wide text-center">
           Tastes of the Maghreb
         </h2>
-        
-        {/* الـ Divider المزيان اللي فيه النجمة في الوسط */}
+
         <div className="flex items-center justify-center space-x-3 mt-4 mb-12">
           <div className="w-12 h-[1px] bg-amber-700/30"></div>
           <span className="text-amber-700 text-xs">✦</span>
           <div className="w-12 h-[1px] bg-amber-700/30"></div>
         </div>
 
-        {/* 2. الـ الـ Filters Buttons (الـ Filtrage) */}
         <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-16">
           {(Object.keys(menuData) as CategoryType[]).map((category) => (
-            <button
-              key={category}
-              onClick={() => {
-                setActiveCategory(category)
-                setSelectedDish(null) // نسكروا الـ Recipe لو تبدلت الفئة
-              }}
-              className={`px-6 py-2.5 text-xs font-semibold tracking-widest uppercase rounded transition-all duration-300 ${
+            <button key={category}
+              onClick={() => { setActiveCategory(category); setSelectedDish(null) }}
+              className={`px-4 sm:px-6 py-2.5 text-xs font-semibold tracking-widest uppercase rounded transition-all duration-300 ${
                 activeCategory === category
                   ? "bg-red-800 text-white shadow-md"
                   : "bg-white/60 hover:bg-white text-zinc-800 border border-zinc-200/50"
@@ -122,18 +115,16 @@ export default function MenuSection() {
           ))}
         </div>
 
-        {/* 3. الـ Grid متع الـ Dishes */}
+        {/* grid-cols-1 على mobile، grid-cols-2 على md+ */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10 w-full">
-          {menuData[activeCategory].map((dish, index) => (
-            <div 
-              key={index} 
+          {menuData[activeCategory].map((dish: any, index: number) => (
+            <div key={index}
               className="group flex flex-col cursor-pointer pb-2 border-b border-zinc-300/40 hover:border-amber-700/40 transition-colors duration-300"
               onClick={() => setSelectedDish(selectedDish?.name === dish.name ? null : dish)}
             >
-              {/* السطر الأول: الإسم والـ Price والـ Dotted line */}
               <div className="flex items-baseline justify-between w-full">
-                <div className="flex items-center space-x-3">
-                  <h3 className="font-serif text-xl text-[#1c1917] group-hover:text-red-800 transition-colors duration-300">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h3 className="font-serif text-lg sm:text-xl text-[#1c1917] group-hover:text-red-800 transition-colors duration-300">
                     {dish.name}
                   </h3>
                   {dish.isSignature && (
@@ -142,26 +133,15 @@ export default function MenuSection() {
                     </span>
                   )}
                 </div>
-                {/* الـ Dotted Line السحرية كيمـا في التصويرة */}
                 <div className="flex-1 border-b border-dotted border-zinc-400 mx-4 relative top-[-4px]"></div>
-                <span className="font-serif text-lg font-bold text-red-800">
-                  {dish.price}
-                </span>
+                <span className="font-serif text-lg font-bold text-red-800 shrink-0">{dish.price}</span>
               </div>
-
-              {/* الـ Description تحت الإسم */}
-              <p className="text-zinc-600 text-sm font-light mt-2 italic leading-relaxed">
-                {dish.description}
-              </p>
-
-              {/* لقطة ذكية: تظهر كلمة "Click to view recipe" عند الـ Hover */}
+              <p className="text-zinc-600 text-sm font-light mt-2 italic leading-relaxed">{dish.description}</p>
               <span className="text-[11px] text-amber-700 font-medium tracking-wide mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {selectedDish?.name === dish.name ? "✕ Close details" : "→ View traditional recipe"}
               </span>
-
-              {/* 4. الـ Recipe Box يفتح بسلاسة تحت الصحن كي تكليكي عليه */}
               {selectedDish?.name === dish.name && (
-                <div className="mt-4 p-4 bg-amber-50/60 border border-amber-600/10 rounded-sm shadow-inner animate-fadeIn">
+                <div className="mt-4 p-4 bg-amber-50/60 border border-amber-600/10 rounded-sm shadow-inner">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-amber-800 mb-1">Traditional Preparation:</h4>
                   <p className="text-xs text-zinc-700 leading-relaxed font-light">{dish.recipe}</p>
                 </div>
