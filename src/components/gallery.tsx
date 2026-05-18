@@ -1,6 +1,49 @@
 import Image from "next/image"
 
-const galleryItems = [ /**/ ]
+const galleryItems = [   {
+    id: 1,
+    src: "/1.jpg",
+    alt: "Couscous Tunisian Dish",
+    className: "md:col-span-1 md:row-span-2 h-[600px] md:h-full hover:shadow-black shadow-2xl",
+  },
+  {
+    id: 2,
+    src: "/6.jpg",
+    alt: "Brik à l'œuf",
+    className: "md:col-span-1 md:row-span-1 h-[280px]",
+  },
+  {
+    id: 3,
+    src: "/3.jpg",
+    alt: "Tunisian Mint Tea",
+    className: "md:col-span-1 md:row-span-1 h-[280px]",
+  },
+  {
+    id: 4,
+    src: "/4.jpg",
+    alt: "Traditional sweets",
+    className: "md:col-span-1 md:row-span-1 h-[280px]",
+  },
+  {
+    id: 5,
+    src: "/5.jpg",
+    alt: "Salade Mechouia",
+    className: "md:col-span-1 md:row-span-1 h-[280px]",
+  },
+  {
+    id: 6,
+    src: "/8.jpg",
+    alt: "Interior luxury dining",
+    className: "md:col-span-2 md:row-span-1 h-[300px]",
+  },
+  {
+    id: 7,
+    src: "/0.jpg",
+    alt: "Freshly baked Tabouna",
+    className: "md:col-span-1 md:row-span-1 h-[300px]",
+  },
+  
+ ]
 
 export default function BentoGallery() {
   return (
